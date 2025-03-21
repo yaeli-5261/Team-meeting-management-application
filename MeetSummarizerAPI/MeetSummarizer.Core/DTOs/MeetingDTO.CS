@@ -8,9 +8,21 @@ namespace MeetSummarizer.Core.DTOs
 {
     public class MeetingDTO
     {
-        //public int Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
-        public List<int> UserIds { get; set; } = new List<int>();
+        public int TeamId { get; set; }
+        public string LinkTranscriptFile { get; set; }
+        public string LinkOrinignFile { get; set; }
     }
+
+    public class MeetingPostDTO
+    {
+        public string Name { get; set; }
+        public DateTime Date { get; set; }
+        public int TeamId { get; set; }
+        public string LinkTranscriptFile { get; set; }
+        public string LinkOrinignFile { get; set; }
+    }
+
 }

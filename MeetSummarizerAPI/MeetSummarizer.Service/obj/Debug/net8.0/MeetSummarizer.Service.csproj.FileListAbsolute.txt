@@ -20,3 +20,4 @@ C:\Users\user1\Documents\MyProjects\Mypracticum\MeetSummarizerAPI\MeetSummarizer
 C:\Users\user1\Documents\MyProjects\Mypracticum\MeetSummarizerAPI\MeetSummarizer.Service\obj\Debug\net8.0\refint\MeetSummarizer.Service.dll
 C:\Users\user1\Documents\MyProjects\Mypracticum\MeetSummarizerAPI\MeetSummarizer.Service\obj\Debug\net8.0\MeetSummarizer.Service.pdb
 C:\Users\user1\Documents\MyProjects\Mypracticum\MeetSummarizerAPI\MeetSummarizer.Service\obj\Debug\net8.0\ref\MeetSummarizer.Service.dll
+C:\Users\user1\Documents\MyProjects\Mypracticum\MeetSummarizerAPI\MeetSummarizer.Service\obj\Debug\net8.0\MeetSummarizer.Service.sourcelink.json

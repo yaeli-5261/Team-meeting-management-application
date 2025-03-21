@@ -15,5 +15,8 @@ namespace MeetSummarizer.Core.IRepository
         Task<User> AddUserAsync(User user);
         Task UpdateUserAsync(int id, User user);
         Task DeleteUserAsync(int id);
+        public void AttachEntity(Role role);
+        //public void AttachEntity<T>(T entity);
+
     }
 }

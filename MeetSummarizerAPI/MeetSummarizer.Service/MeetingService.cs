@@ -2,7 +2,6 @@
 using MeetSummarizer.Core.DTOs;
 using MeetSummarizer.Core.Entities;
 using MeetSummarizer.Core.IRepository;
-using MeetSummarizer.Core.Repository;
 using MeetSummarizer.Core.Services;
 using System;
 using System.Collections.Generic;
@@ -14,40 +13,41 @@ namespace MeetSummarizer.Service
 {
     public class MeetingService : IMeetingService
     {
-        private readonly IManagerRepository _managerRepository;
+        private readonly IMeetingRepository _meetingRepository;
+        private readonly IMapper _mapper;
 
-        public MeetingService(IManagerRepository managerRepository)
+        public MeetingService(IMeetingRepository meetingRepository, IMapper mapper)
         {
-            _managerRepository = managerRepository;
+            _meetingRepository = meetingRepository;
+            _mapper = mapper;
         }
 
-        public async Task<List<Meeting>> GetAllMeetings()
+        public async Task<List<MeetingDTO>> GetAllMeetings()
         {
-            return await _managerRepository.meetingRepository.GetAllMeetingAsync();
+            var meetings = await _meetingRepository.GetAllMeetingAsync();
+            return _mapper.Map<List<MeetingDTO>>(meetings);
         }
 
-        public async Task<Meeting> GetMeetingById(int id)
+        public async Task<MeetingDTO> GetMeetingById(int id)
         {
-            return await _managerRepository.meetingRepository.GetMeetingByIdAsync(id);
-
+            var meeting = await _meetingRepository.GetMeetingByIdAsync(id);
+            return meeting != null ? _mapper.Map<MeetingDTO>(meeting) : null;
         }
 
         public async Task AddMeeting(Meeting meeting)
         {
-            await _managerRepository.meetingRepository.AddMeetingAsync(meeting);
-            await _managerRepository.SaveAsync();
+            await _meetingRepository.AddMeetingAsync(meeting);
         }
 
-        public async Task UpdateMeeting(int id, Meeting meeting)
+        public async Task<MeetingDTO> UpdateMeeting(int id, MeetingPostDTO meetingDto)
         {
-            await _managerRepository.meetingRepository.UpdateMeetingAsync(id, meeting);
-            await _managerRepository.SaveAsync();
+            var updatedMeeting = await _meetingRepository.UpdateMeetingAsync(id, _mapper.Map<Meeting>(meetingDto));
+            return updatedMeeting != null ? _mapper.Map<MeetingDTO>(updatedMeeting) : null;
         }
 
-        public async Task DeleteMeeting(int id)
+        public async Task<bool> DeleteMeeting(int id)
         {
-            await _managerRepository.meetingRepository.DeleteMeetingAsync(id);
-            await _managerRepository.SaveAsync();
+            return await _meetingRepository.DeleteMeetingAsync(id);
         }
     }
 }

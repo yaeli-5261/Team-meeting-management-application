@@ -67,7 +67,7 @@
         }
       }
     },
-    "/api/Meeting/Admin": {
+    "/api/Meeting": {
       "get": {
         "tags": [
           "Meeting"
@@ -112,17 +112,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MeetingDTO"
+                "$ref": "#/components/schemas/MeetingPostDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MeetingDTO"
+                "$ref": "#/components/schemas/MeetingPostDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MeetingDTO"
+                "$ref": "#/components/schemas/MeetingPostDTO"
               }
             }
           }
@@ -192,17 +192,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MeetingDTO"
+                "$ref": "#/components/schemas/MeetingPostDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MeetingDTO"
+                "$ref": "#/components/schemas/MeetingPostDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MeetingDTO"
+                "$ref": "#/components/schemas/MeetingPostDTO"
               }
             }
           }
@@ -403,10 +403,10 @@
         }
       }
     },
-    "/api/Transcript": {
+    "/api/Team": {
       "get": {
         "tags": [
-          "Transcript"
+          "Team"
         ],
         "responses": {
           "200": {
@@ -416,7 +416,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TranscriptDTO"
+                    "$ref": "#/components/schemas/TeamDTO"
                   }
                 }
               },
@@ -424,7 +424,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TranscriptDTO"
+                    "$ref": "#/components/schemas/TeamDTO"
                   }
                 }
               },
@@ -432,7 +432,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/TranscriptDTO"
+                    "$ref": "#/components/schemas/TeamDTO"
                   }
                 }
               }
@@ -442,23 +442,23 @@
       },
       "post": {
         "tags": [
-          "Transcript"
+          "Team"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TranscriptDTO"
+                "$ref": "#/components/schemas/TeamPostDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TranscriptDTO"
+                "$ref": "#/components/schemas/TeamPostDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TranscriptDTO"
+                "$ref": "#/components/schemas/TeamPostDTO"
               }
             }
           }
@@ -470,10 +470,10 @@
         }
       }
     },
-    "/api/Transcript/{id}": {
+    "/api/Team/{id}": {
       "get": {
         "tags": [
-          "Transcript"
+          "Team"
         ],
         "parameters": [
           {
@@ -492,17 +492,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/TranscriptDTO"
+                  "$ref": "#/components/schemas/TeamDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TranscriptDTO"
+                  "$ref": "#/components/schemas/TeamDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TranscriptDTO"
+                  "$ref": "#/components/schemas/TeamDTO"
                 }
               }
             }
@@ -511,7 +511,7 @@
       },
       "put": {
         "tags": [
-          "Transcript"
+          "Team"
         ],
         "parameters": [
           {
@@ -528,17 +528,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TranscriptDTO"
+                "$ref": "#/components/schemas/TeamPostDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TranscriptDTO"
+                "$ref": "#/components/schemas/TeamPostDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TranscriptDTO"
+                "$ref": "#/components/schemas/TeamPostDTO"
               }
             }
           }
@@ -551,7 +551,7 @@
       },
       "delete": {
         "tags": [
-          "Transcript"
+          "Team"
         ],
         "parameters": [
           {
@@ -571,7 +571,7 @@
         }
       }
     },
-    "/api/upload/upload-url": {
+    "/api/upload/presigned-url": {
       "get": {
         "tags": [
           "Upload"
@@ -621,7 +621,7 @@
         }
       }
     },
-    "/api/User/Admin": {
+    "/api/User": {
       "get": {
         "tags": [
           "User"
@@ -655,6 +655,35 @@
                 }
               }
             }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
@@ -717,17 +746,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserDTO"
+                "$ref": "#/components/schemas/UserCreateDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserDTO"
+                "$ref": "#/components/schemas/UserCreateDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserDTO"
+                "$ref": "#/components/schemas/UserCreateDTO"
               }
             }
           }
@@ -741,205 +770,6 @@
       "delete": {
         "tags": [
           "User"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/User": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserCreateDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserCreateDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserCreateDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/UserRole": {
-      "get": {
-        "tags": [
-          "UserRole"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserRoleDTO"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserRoleDTO"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UserRoleDTO"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "UserRole"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserRoleCreateDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserRoleCreateDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserRoleCreateDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/UserRole/{id}": {
-      "get": {
-        "tags": [
-          "UserRole"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserRoleDTO"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserRoleDTO"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserRoleDTO"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "UserRole"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserRolePutDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserRolePutDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserRolePutDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "UserRole"
         ],
         "parameters": [
           {
@@ -979,6 +809,10 @@
       "MeetingDTO": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
           "name": {
             "type": "string",
             "nullable": true
@@ -987,12 +821,42 @@
             "type": "string",
             "format": "date-time"
           },
-          "userIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32"
-            },
+          "teamId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "linkTranscriptFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "linkOrinignFile": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "MeetingPostDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "linkTranscriptFile": {
+            "type": "string",
+            "nullable": true
+          },
+          "linkOrinignFile": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -1013,9 +877,13 @@
             "type": "string",
             "nullable": true
           },
-          "role": {
-            "type": "string",
-            "nullable": true
+          "roleId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "teamId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1060,14 +928,31 @@
         },
         "additionalProperties": false
       },
-      "TranscriptDTO": {
+      "TeamDTO": {
         "type": "object",
         "properties": {
-          "meetingId": {
+          "id": {
             "type": "integer",
             "format": "int32"
           },
-          "fileLink": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "teamMembers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TeamPostDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string",
             "nullable": true
           }
@@ -1093,9 +978,9 @@
             "type": "integer",
             "format": "int32"
           },
-          "role": {
-            "type": "string",
-            "nullable": true
+          "roleId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -1120,55 +1005,6 @@
             "nullable": true
           },
           "teamId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "role": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserRoleCreateDTO": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "roleId": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserRoleDTO": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "roleId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "role": {
-            "$ref": "#/components/schemas/Role"
-          }
-        },
-        "additionalProperties": false
-      },
-      "UserRolePutDTO": {
-        "type": "object",
-        "properties": {
-          "userId": {
             "type": "integer",
             "format": "int32"
           },

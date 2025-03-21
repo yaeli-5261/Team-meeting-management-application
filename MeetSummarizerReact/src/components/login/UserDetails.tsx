@@ -9,9 +9,9 @@ const Userdetails = () => {
     return (
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <Avatar sx={{ bgcolor: deepOrange[500], marginRight: "8px" }}>
-                {user?.name?.charAt(0) || "U"}
+                {user?.userName?.charAt(0) || "U"}
             </Avatar>
-            <Typography variant="body1">{user?.name || "Unknown User"}</Typography>
+            <Typography variant="body1">{user?.userName || "Unknown User"}</Typography>
         </div>
     );
 };

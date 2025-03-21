@@ -2,7 +2,6 @@
 using MeetSummarizer.Core.IRepository;
 using MeetSummarizer.Core.IServices;
 using MeetSummarizer.Core.Mapping;
-using MeetSummarizer.Core.Repository;
 using MeetSummarizer.Core.Services;
 using MeetSummarizer.Data.Repositories;
 using MeetSummarizer.Service;
@@ -55,14 +54,12 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IMeetingService, MeetingService>();
 builder.Services.AddScoped<IMeetingRepository, MeetingRepository>();
 
-builder.Services.AddScoped<ITranscriptService, TranscriptService>();
-builder.Services.AddScoped<ITranscriptRepository , TranscriptRepository>();
-
 builder.Services.AddScoped<IRoleService ,RoleService> ();
 builder.Services.AddScoped<IRoleRepository , RoleRepository>();
 
-builder.Services.AddScoped<IUserRoleService, UserRoleService>();
-builder.Services.AddScoped<IUserRoleRepository , UserRoleRepository>();
+builder.Services.AddScoped<ITeamService, TeamService>();
+builder.Services.AddScoped<ITeamRepository, TeamRepository>();
+
 
 builder.Services.AddScoped<IManagerRepository, ManagerRepository>();
 builder.Services.AddScoped<AuthService>();
@@ -108,14 +105,6 @@ builder.Services.AddCors(options =>
                           .AllowAnyMethod()
                           .AllowAnyHeader());
 });
-////הוספה של ריאקט 
-//builder.Services.AddCors(options =>
-//{
-//    options.AddPolicy("AllowReactApp",
-//        builder => builder.WithOrigins("http://localhost:5173")  // כתובת ה-React שלך
-//                          .AllowAnyMethod()
-//                          .AllowAnyHeader());
-//});
 
 
 builder.Services.AddDbContext<DataContext>(options =>

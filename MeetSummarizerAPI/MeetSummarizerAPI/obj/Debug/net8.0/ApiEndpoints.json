@@ -33,6 +33,42 @@
   },
   {
     "ContainingType": "MeetSummarizer.API.Controllers.MeetingController",
+    "Method": "GetAll",
+    "RelativePath": "api/Meeting",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[MeetSummarizer.Core.DTOs.MeetingDTO, MeetSummarizer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "MeetSummarizer.API.Controllers.MeetingController",
+    "Method": "Post",
+    "RelativePath": "api/Meeting",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "meetingDto",
+        "Type": "MeetSummarizer.Core.DTOs.MeetingPostDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "MeetSummarizer.API.Controllers.MeetingController",
     "Method": "GetById",
     "RelativePath": "api/Meeting/{id}",
     "HttpMethod": "GET",
@@ -72,7 +108,7 @@
       },
       {
         "Name": "meetingDto",
-        "Type": "MeetSummarizer.Core.DTOs.MeetingDTO",
+        "Type": "MeetSummarizer.Core.DTOs.MeetingPostDTO",
         "IsRequired": true
       }
     ],
@@ -89,42 +125,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MeetSummarizer.API.Controllers.MeetingController",
-    "Method": "GetAll",
-    "RelativePath": "api/Meeting/Admin",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[MeetSummarizer.Core.DTOs.MeetingDTO, MeetSummarizer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MeetSummarizer.API.Controllers.MeetingController",
-    "Method": "Post",
-    "RelativePath": "api/Meeting/Admin",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "meetingDto",
-        "Type": "MeetSummarizer.Core.DTOs.MeetingDTO",
         "IsRequired": true
       }
     ],
@@ -230,16 +230,16 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "MeetSummarizer.API.Controllers.TranscriptController",
+    "ContainingType": "MeetSummarizerAPI.Controllers.TeamController",
     "Method": "GetAll",
-    "RelativePath": "api/Transcript",
+    "RelativePath": "api/Team",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[MeetSummarizer.Core.DTOs.TranscriptDTO, MeetSummarizer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[MeetSummarizer.Core.DTOs.TeamDTO, MeetSummarizer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -250,25 +250,25 @@
     ]
   },
   {
-    "ContainingType": "MeetSummarizer.API.Controllers.TranscriptController",
+    "ContainingType": "MeetSummarizerAPI.Controllers.TeamController",
     "Method": "Post",
-    "RelativePath": "api/Transcript",
+    "RelativePath": "api/Team",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "transcriptDto",
-        "Type": "MeetSummarizer.Core.DTOs.TranscriptDTO",
+        "Name": "teamDto",
+        "Type": "MeetSummarizer.Core.DTOs.TeamPostDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "MeetSummarizer.API.Controllers.TranscriptController",
+    "ContainingType": "MeetSummarizerAPI.Controllers.TeamController",
     "Method": "GetById",
-    "RelativePath": "api/Transcript/{id}",
+    "RelativePath": "api/Team/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -281,7 +281,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MeetSummarizer.Core.DTOs.TranscriptDTO",
+        "Type": "MeetSummarizer.Core.DTOs.TeamDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -292,9 +292,9 @@
     ]
   },
   {
-    "ContainingType": "MeetSummarizer.API.Controllers.TranscriptController",
+    "ContainingType": "MeetSummarizerAPI.Controllers.TeamController",
     "Method": "Put",
-    "RelativePath": "api/Transcript/{id}",
+    "RelativePath": "api/Team/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -305,17 +305,17 @@
         "IsRequired": true
       },
       {
-        "Name": "transcriptDto",
-        "Type": "MeetSummarizer.Core.DTOs.TranscriptDTO",
+        "Name": "teamDto",
+        "Type": "MeetSummarizer.Core.DTOs.TeamPostDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "MeetSummarizer.API.Controllers.TranscriptController",
+    "ContainingType": "MeetSummarizerAPI.Controllers.TeamController",
     "Method": "Delete",
-    "RelativePath": "api/Transcript/{id}",
+    "RelativePath": "api/Team/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -331,7 +331,7 @@
   {
     "ContainingType": "MeetSummarizer.API.Controllers.UploadController",
     "Method": "GetUploadUrl",
-    "RelativePath": "api/upload/upload-url",
+    "RelativePath": "api/upload/presigned-url",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -367,87 +367,8 @@
   },
   {
     "ContainingType": "MeetSummarizer.API.Controllers.UserController",
-    "Method": "Post",
-    "RelativePath": "api/User",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userDto",
-        "Type": "MeetSummarizer.Core.DTOs.UserCreateDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MeetSummarizer.API.Controllers.UserController",
-    "Method": "GetById",
-    "RelativePath": "api/User/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "MeetSummarizer.Core.DTOs.UserDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MeetSummarizer.API.Controllers.UserController",
-    "Method": "Put",
-    "RelativePath": "api/User/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "userDto",
-        "Type": "MeetSummarizer.Core.DTOs.UserDTO",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MeetSummarizer.API.Controllers.UserController",
-    "Method": "Delete",
-    "RelativePath": "api/User/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "MeetSummarizer.API.Controllers.UserController",
     "Method": "GetAll",
-    "RelativePath": "api/User/Admin",
+    "RelativePath": "api/User",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -465,45 +386,25 @@
     ]
   },
   {
-    "ContainingType": "MeetSummarizer.API.Controllers.UserRoleController",
-    "Method": "GetAll",
-    "RelativePath": "api/UserRole",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[MeetSummarizer.Core.DTOs.UserRoleDTO, MeetSummarizer.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "MeetSummarizer.API.Controllers.UserRoleController",
+    "ContainingType": "MeetSummarizer.API.Controllers.UserController",
     "Method": "Post",
-    "RelativePath": "api/UserRole",
+    "RelativePath": "api/User",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userRoleCreateDto",
-        "Type": "MeetSummarizer.Core.DTOs.UserRoleCreateDTO",
+        "Name": "userDto",
+        "Type": "MeetSummarizer.Core.DTOs.RegisterDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "MeetSummarizer.API.Controllers.UserRoleController",
+    "ContainingType": "MeetSummarizer.API.Controllers.UserController",
     "Method": "GetById",
-    "RelativePath": "api/UserRole/{id}",
+    "RelativePath": "api/User/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -516,7 +417,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "MeetSummarizer.Core.DTOs.UserRoleDTO",
+        "Type": "MeetSummarizer.Core.DTOs.UserDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -527,9 +428,9 @@
     ]
   },
   {
-    "ContainingType": "MeetSummarizer.API.Controllers.UserRoleController",
+    "ContainingType": "MeetSummarizer.API.Controllers.UserController",
     "Method": "Put",
-    "RelativePath": "api/UserRole/{id}",
+    "RelativePath": "api/User/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -540,17 +441,17 @@
         "IsRequired": true
       },
       {
-        "Name": "userRoleDto",
-        "Type": "MeetSummarizer.Core.DTOs.UserRolePutDTO",
+        "Name": "userDto",
+        "Type": "MeetSummarizer.Core.DTOs.UserCreateDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "MeetSummarizer.API.Controllers.UserRoleController",
+    "ContainingType": "MeetSummarizer.API.Controllers.UserController",
     "Method": "Delete",
-    "RelativePath": "api/UserRole/{id}",
+    "RelativePath": "api/User/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

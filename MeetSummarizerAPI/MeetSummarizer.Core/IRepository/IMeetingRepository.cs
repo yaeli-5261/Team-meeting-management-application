@@ -12,8 +12,8 @@ namespace MeetSummarizer.Core.IRepository
         Task<List<Meeting>> GetAllMeetingAsync();
         Task<Meeting> GetMeetingByIdAsync(int id);
         Task AddMeetingAsync(Meeting meeting);
-        Task UpdateMeetingAsync(int id, Meeting meeting);
-        Task DeleteMeetingAsync(int id);
+        Task<Meeting> UpdateMeetingAsync(int id, Meeting meeting);
+        Task<bool> DeleteMeetingAsync(int id);
     }
 }
 

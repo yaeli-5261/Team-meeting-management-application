@@ -3,10 +3,10 @@ import axios from "axios";
 
 interface User {
     id?: string;
-    name: string;
+    userName: string;
     email?: string;
     password: string;
-    roleName?: string;
+    role?: string;
     token?: string;
 }
 
@@ -15,11 +15,11 @@ const API_URL = "https://localhost:7214/api/Auth";
 // פעולה להתחברות
 export const signIn = createAsyncThunk(
     "Auth/login",
-    async (user: { name: string; password: string }, thunkAPI) => {
+    async (user: { userName: string; password: string }, thunkAPI) => {
         try {
-            const res = await axios.post(`${API_URL}/Login`, {
-                Name: user.name,
-                Password: user.password
+            const res = await axios.post(`${API_URL}/login`, {
+                userName: user.userName,
+                password: user.password
             });
             return res.data; // מניח שהשרת מחזיר { token, user }
         } catch (err: any) {
@@ -31,13 +31,13 @@ export const signIn = createAsyncThunk(
 // פעולה לרישום משתמש חדש
 export const signUp = createAsyncThunk(
     "Auth/register",
-    async (user: { name: string; email: string; password: string; roleName: string }, thunkAPI) => {
+    async (user: { userName: string; email: string; password: string; role: string }, thunkAPI) => {
         try {
-            const res = await axios.post(`${API_URL}/Register`, {
-                Name: user.name,
+            const res = await axios.post(`${API_URL}/register`, {
+                userName: user.userName,
                 Email: user.email,
                 Password: user.password,
-                RoleName: user.roleName
+                role: user.role
             });
             return res.data; // מניח שהשרת מחזיר { token, user }
         } catch (err: any) {
@@ -56,13 +56,13 @@ const loadUserFromSession = (): User | null => {
 const authSlice = createSlice({
     name: "Auth",
     initialState: {
-        user: loadUserFromSession() || ({} as User),
+        user: {} as Partial<User>,
         loading: false,
         error: ""
     },
     reducers: {
         logout: (state) => {
-            state.user = {} as User;
+            state.user = {} as Partial<User>;
             sessionStorage.removeItem("user");
         }
     },
@@ -72,7 +72,7 @@ const authSlice = createSlice({
                 state.loading = true;
                 state.error = "";
             })
-            .addCase(signIn.fulfilled, (state, action: PayloadAction<{ token: string; user: User }>) => {
+            .addCase(signIn.fulfilled, (state, action: PayloadAction<{ token: string; user:User}>) => {
                 state.loading = false;
                 state.user = action.payload.user;
                 state.user.token = action.payload.token;

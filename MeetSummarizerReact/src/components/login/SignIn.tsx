@@ -4,21 +4,21 @@ import { useDispatch, useSelector } from "react-redux";
 // import { loginUser } from "../UserRedux/authSlice";
 // import { RootState } from "../UserRedux/reduxStore";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "../UserRedux/reduxStore";
+import { AppDispatch, RootState } from "../UserRedux/reduxStore";
 // import loginUser from "../UserRedux/authSlice";  // ✅ ייבוא הפונקציה
 import { signIn } from "../UserRedux/authSlice";
 
 const SignIn = () => {
-    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
     const { loading, error } = useSelector((state: RootState) => state.Auth);
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        dispatch(signIn({ email, password })).then((result: any) => {
+        dispatch(signIn({ userName:name, password :password})).then((result: any) => {
             if (result.meta.requestStatus === "fulfilled") {
-                navigate("/dashboard");
+                navigate("/FileUploader");
             }
         });
     };
@@ -26,10 +26,10 @@ const SignIn = () => {
     return (
         <Box component="form" onSubmit={handleSubmit} sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <TextField
-                label="Email"
-                type="email"
-                value={email}
-                onChange={(e:any) => setEmail(e.target.value)}
+                label="Name"
+                type="text"
+                value={name}
+                onChange={(e:any) => setName(e.target.value)}
                 required
                 fullWidth
             />
@@ -45,7 +45,12 @@ const SignIn = () => {
                 {loading ? "Signing in..." : "Sign In"}
             </Button>
             {error && <p style={{ color: "red" }}>{error}</p>}
+
+
+       
         </Box>
+
+
     );
 };
 

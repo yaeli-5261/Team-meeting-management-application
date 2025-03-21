@@ -11,8 +11,7 @@ namespace MeetSummarizer.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
-    public class MeetingController: ControllerBase
+    public class MeetingController : ControllerBase
     {
         private readonly IMeetingService _meetingService;
         private readonly IMapper _mapper;
@@ -22,57 +21,49 @@ namespace MeetSummarizer.API.Controllers
             _meetingService = meetingService;
             _mapper = mapper;
         }
-        [HttpGet("Admin")]
-        [Authorize(Policy = "Admin")]
+
+        [HttpGet]
         public async Task<ActionResult<List<MeetingDTO>>> GetAll()
         {
-            var meeting = await _meetingService.GetAllMeetings();
-            return Ok(meeting);
+            var meetings = await _meetingService.GetAllMeetings();
+            return Ok(meetings);
         }
 
-      
         [HttpGet("{id}")]
-
         public async Task<ActionResult<MeetingDTO>> GetById(int id)
         {
             var meeting = await _meetingService.GetMeetingById(id);
             if (meeting == null)
-                return NotFound(new {message = "Meeting noy found"});
+                return NotFound(new { message = "Meeting not found" });
 
             return Ok(meeting);
         }
 
-        //add meeting only for admin
+        [HttpPost]
+        public async Task<ActionResult> Post([FromBody] MeetingPostDTO meetingDto)
+        {
+            var meeting = _mapper.Map<Meeting>(meetingDto);
+            await _meetingService.AddMeeting(meeting);
+            return CreatedAtAction(nameof(GetById), new { id = meeting.Id }, _mapper.Map<MeetingDTO>(meeting));
+        }
 
-        [HttpPost("Admin")]
-        [Authorize(Policy = "Admin")]
-        public async Task<ActionResult> Post([FromBody] MeetingDTO meetingDto)
-        {
-            var createdMeeting = _mapper.Map<Meeting>(meetingDto);
-            await _meetingService.AddMeeting(createdMeeting);
-            return CreatedAtAction(nameof(GetById), new { id = createdMeeting.Id }, createdMeeting);
-        }
-        //update meeting
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] MeetingDTO meetingDto)
+        public async Task<ActionResult> Put(int id, [FromBody] MeetingPostDTO meetingDto)
         {
-            var updated = await _meetingService.GetMeetingById(id);
-            if (updated==null)
+            var updatedMeeting = await _meetingService.UpdateMeeting(id, meetingDto);
+            if (updatedMeeting == null)
                 return NotFound(new { message = "Meeting not found." });
-            Meeting meeting = _mapper.Map<Meeting>(meetingDto);
-            await _meetingService.UpdateMeeting(id, meeting);
-            return Ok(new { message = "Meeting updated" });
+
+            return Ok(updatedMeeting);
         }
-       
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var deletedMeeting = await _meetingService.GetMeetingById(id);
-            if (deletedMeeting==null)
+            var deleted = await _meetingService.DeleteMeeting(id);
+            if (!deleted)
                 return NotFound(new { message = "Meeting not found." });
 
-            await _meetingService.DeleteMeeting(id);
             return Ok(new { message = "Meeting deleted" });
         }
     }

@@ -1,5 +1,5 @@
 ﻿using MeetSummarizer.Core.IRepository;
-using MeetSummarizer.Core.Repository;
+using MeetSummarizer.Core.IServices;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,24 +13,21 @@ namespace MeetSummarizer.Data.Repositories
     {
         private readonly DataContext context;
         public IMeetingRepository meetingRepository { get; }
-        public ITranscriptRepository transcriptRepository { get; }
         public IRoleRepository roleRepository { get; }
         public IUserRepository userRepository { get; }
+        public ITeamRepository teamRepository { get; }
 
-        public IUserRoleRepository userRoleRepository { get; }
         public ManagerRepository(DataContext _context
                                 , IMeetingRepository _meetingRepository,
-                                 ITranscriptRepository _transcriptRepository,
                                  IRoleRepository _roleRepository,
                                  IUserRepository _userRepository,
-                                 IUserRoleRepository _userRoleRepository )
+                                 ITeamRepository _teamRepository)
         {
             meetingRepository = _meetingRepository;
-            transcriptRepository = _transcriptRepository;
             roleRepository = _roleRepository;   
             userRepository = _userRepository;
+            teamRepository = _teamRepository;
             context = _context;
-            userRoleRepository = _userRoleRepository;
         }
 
         public async Task SaveAsync()

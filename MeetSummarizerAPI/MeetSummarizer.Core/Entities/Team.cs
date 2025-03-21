@@ -14,5 +14,6 @@ namespace MeetSummarizer.Core.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
+        public List<User> TeamMembers { get; set; } = new List<User>();
     }
 }

@@ -16,9 +16,7 @@ const NavBar = () => {
     return (
         <AppBar position="static">
             <Toolbar>
-                <NavLinkStyled to='/invoices'>Invoices</NavLinkStyled>
-                <NavLinkStyled to='/upload-invoice'>Upload Invoice</NavLinkStyled>
-                <NavLinkStyled to='/reports'>Reports</NavLinkStyled>
+                <NavLinkStyled to='/'></NavLinkStyled>
             </Toolbar>
         </AppBar>
     );

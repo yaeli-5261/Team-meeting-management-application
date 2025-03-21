@@ -15,3 +15,4 @@ C:\Users\user1\Documents\MyProjects\Mypracticum\MeetSummarizerAPI\MeetSummarizer
 C:\Users\user1\Documents\MyProjects\Mypracticum\MeetSummarizerAPI\MeetSummarizer.Data\obj\Debug\net8.0\MeetSummarizer.Data.pdb
 C:\Users\user1\Documents\MyProjects\Mypracticum\MeetSummarizerAPI\MeetSummarizer.Data\obj\Debug\net8.0\MeetSummarizer.Data.genruntimeconfig.cache
 C:\Users\user1\Documents\MyProjects\Mypracticum\MeetSummarizerAPI\MeetSummarizer.Data\obj\Debug\net8.0\ref\MeetSummarizer.Data.dll
+C:\Users\user1\Documents\MyProjects\Mypracticum\MeetSummarizerAPI\MeetSummarizer.Data\obj\Debug\net8.0\MeetSummarizer.Data.sourcelink.json

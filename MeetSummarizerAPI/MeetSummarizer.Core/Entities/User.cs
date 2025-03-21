@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace MeetSummarizer.Core.Entities
 {
@@ -17,10 +18,16 @@ namespace MeetSummarizer.Core.Entities
         public string UserName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
         public int TeamId { get; set; }
-        public string Role { get; set; }
 
+        [DefaultValue(21)]
+
+        //[ForeignKey("RoleId")]
+        public int RoleId { get; set; } = 21;
+        [ForeignKey("RoleId")]
+        public Role Role { get; set; }
+        
     }
 }

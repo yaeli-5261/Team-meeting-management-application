@@ -1,4 +1,4 @@
-import { Button, Grid, Grid2 } from "@mui/material";
+import { Button, Grid2 } from "@mui/material";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import { useContext, useState } from "react";

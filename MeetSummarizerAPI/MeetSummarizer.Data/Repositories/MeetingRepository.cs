@@ -1,6 +1,5 @@
 ﻿using MeetSummarizer.Core.Entities;
 using MeetSummarizer.Core.IRepository;
-using MeetSummarizer.Core.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MeetSummarizer.Data.Repositories
 {
-    public class MeetingRepository: IMeetingRepository
+    public class MeetingRepository : IMeetingRepository
     {
         private readonly DataContext _context;
 
@@ -23,46 +22,43 @@ namespace MeetSummarizer.Data.Repositories
         {
             return await _context.Meetings.ToListAsync();
         }
-      
+
         public async Task<Meeting> GetMeetingByIdAsync(int id)
         {
-            var meeting= await _context.Meetings
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            if (meeting == null)
-            {
-                return null;
-            }
-            return meeting; 
+            return await _context.Meetings.FindAsync(id);
         }
 
         public async Task AddMeetingAsync(Meeting meeting)
         {
             await _context.Meetings.AddAsync(meeting);
-
+            await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateMeetingAsync(int id,Meeting meeting)
+        public async Task<Meeting> UpdateMeetingAsync(int id, Meeting meeting)
         {
             var meetingToUpdate = await GetMeetingByIdAsync(id);
             if (meetingToUpdate == null)
-            {
-                throw new KeyNotFoundException($"Meeting with id {id} not found");
-            }
-            //אחכ אפשר לשנות לפי סינון---
-            meetingToUpdate.Name = meeting.Name;    
-            meetingToUpdate.Date = meeting.Date;    
-           
-                
+                return null;
+
+            meetingToUpdate.Name = meeting.Name;
+            meetingToUpdate.Date = meeting.Date;
+            meetingToUpdate.TeamId = meeting.TeamId;
+            meetingToUpdate.LinkTranscriptFile = meeting.LinkTranscriptFile;
+            meetingToUpdate.LinkOrinignFile= meeting.LinkOrinignFile;
+
+            await _context.SaveChangesAsync();
+            return meetingToUpdate;
         }
 
-        public async Task DeleteMeetingAsync(int id)
+        public async Task<bool> DeleteMeetingAsync(int id)
         {
-            var meeting =await GetMeetingByIdAsync(id);
-            if (meeting != null)
-                _context.Meetings.Remove(meeting);
+            var meeting = await GetMeetingByIdAsync(id);
+            if (meeting == null)
+                return false;
+
+            _context.Meetings.Remove(meeting);
+            await _context.SaveChangesAsync();
+            return true;
         }
-
-
     }
 }

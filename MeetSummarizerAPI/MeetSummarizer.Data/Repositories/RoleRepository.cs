@@ -34,7 +34,6 @@ namespace MeetSummarizer.Data.Repositories
             }
             return role;
         }
-
         public async Task<Role> AddRoleAsync(Role role)
         {
             await _context.Roles.AddAsync(role);

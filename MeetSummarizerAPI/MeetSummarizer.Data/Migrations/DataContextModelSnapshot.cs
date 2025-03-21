@@ -32,14 +32,19 @@ namespace MeetSummarizer.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("LinkOrinignFile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkTranscriptFile")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TeamId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TranscriptId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -74,7 +79,7 @@ namespace MeetSummarizer.Data.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("MeetSummarizer.Core.Entities.Transcript", b =>
+            modelBuilder.Entity("MeetSummarizer.Core.Entities.Team", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,16 +87,13 @@ namespace MeetSummarizer.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("FileLink")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MeetingId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Transcripts");
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("MeetSummarizer.Core.Entities.User", b =>
@@ -113,9 +115,8 @@ namespace MeetSummarizer.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.Property<int>("TeamId")
                         .HasColumnType("int");
@@ -129,33 +130,14 @@ namespace MeetSummarizer.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("TeamId");
+
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("MeetSummarizer.Core.Entities.UserRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserRoles");
-                });
-
-            modelBuilder.Entity("MeetSummarizer.Core.Entities.UserRole", b =>
+            modelBuilder.Entity("MeetSummarizer.Core.Entities.User", b =>
                 {
                     b.HasOne("MeetSummarizer.Core.Entities.Role", "Role")
                         .WithMany()
@@ -163,15 +145,18 @@ namespace MeetSummarizer.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MeetSummarizer.Core.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                    b.HasOne("MeetSummarizer.Core.Entities.Team", null)
+                        .WithMany("TeamMembers")
+                        .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
 
-                    b.Navigation("User");
+            modelBuilder.Entity("MeetSummarizer.Core.Entities.Team", b =>
+                {
+                    b.Navigation("TeamMembers");
                 });
 #pragma warning restore 612, 618
         }

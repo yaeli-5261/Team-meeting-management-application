@@ -15,7 +15,8 @@ namespace MeetSummarizer.API.Controllers
             _s3Service = s3Service;
         }
 
-        [HttpGet("upload-url")]
+        //[HttpGet("upload-url")]
+        [HttpGet("presigned-url")]
         public async Task<IActionResult> GetUploadUrl([FromQuery] string fileName, [FromQuery] string contentType)
         {
             if (string.IsNullOrEmpty(fileName))

@@ -26,44 +26,64 @@ namespace MeetSummarizerAPI.Controllers
             _mapper = mapper;
         }
 
-
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             var userRole = await _userService.GetUserByNameAndPasswordAsync(model.Password,model.UserName);
 
             // כאן יש לבדוק את שם המשתמש והסיסמה מול מסד הנתונים
-            if (userRole.Role == "Admin")
+            if (userRole.Role.RoleName == "Admin")
             {
                 var token = _authService.GenerateJwtToken(model.UserName, new[] { "Admin" });
-                return Ok(new { Token = token , User = userRole.UserName });
+                return Ok(new { Token = token , User = userRole });
             }
-            else if (userRole.Role == "Worker")
+            else if (userRole.Role.RoleName == "DevelopMen")
             {
-                var token = _authService.GenerateJwtToken(model.UserName, new[] { "Worker" });
-                return Ok(new { Token = token, User = userRole.UserName });
+                var token = _authService.GenerateJwtToken(model.UserName, new[] { "DevelopMen" });
+                return Ok(new { Token = token, User = userRole });
             }
 
             return Unauthorized();
         }
+
+        //קוד מהמורה
+        //[HttpPost("register")]
+        //public async Task<IActionResult> RegisterAsync([FromBody] RegisterDto model)
+        //{
+        //    if (model == null)
+        //    {
+        //        return Conflict("User is not valid");
+        //    }
+        //    var modelD = _mapper.Map<User>(model);
+
+        //    var existingUser = await _userService.AddUser(modelD);
+        //    if (existingUser == null)
+        //        return BadRequest();
+
+        //    var token = _authService.GenerateJwtToken(model.UserName, new[] { model.Role });
+        //    return Ok(new { Token = token,User = modelD });
+        //}
+
+
+
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterDto model)
         {
             if (model == null)
-            {
                 return Conflict("User is not valid");
-            }
-            var modelD = _mapper.Map<User>(model);
 
-            var existingUser = await _userService.AddUser(modelD);
-            if (existingUser == null)
-                return BadRequest();
+            // שליחת הנתונים ל- UserService
+            var createdUser = _mapper.Map<User>(model);
+            var newUser = await _userService.AddUser(createdUser);
+            if (newUser == null)
+                return BadRequest("Error creating user");
 
-            var token = _authService.GenerateJwtToken(model.UserName, new[] { model.Role });
-            return Ok(new { Token = token });
+            // יצירת טוקן JWT עם שם התפקיד
+            var token = _authService.GenerateJwtToken(createdUser.UserName, new[] { newUser.Role.RoleName });
 
-
+            return Ok(new { Token = token, User = newUser });
         }
+
     }
 
 }

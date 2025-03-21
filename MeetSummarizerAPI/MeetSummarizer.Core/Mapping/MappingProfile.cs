@@ -15,15 +15,17 @@ namespace MeetSummarizer.Core.Mapping
         {
 
             CreateMap<Meeting, MeetingDTO>().ReverseMap();
-            CreateMap<Transcript, TranscriptDTO>().ReverseMap();
-            CreateMap<Transcript, TranscriptPutDTO>().ReverseMap();
+            CreateMap<Meeting, MeetingPostDTO>().ReverseMap();
             CreateMap<User, UserDTO>().ReverseMap();
+            //CreateMap<User, RegisterDto>().ReverseMap();
+            CreateMap<RegisterDto, User>()
+    .ForMember(dest => dest.Role, opt => opt.Ignore());  // AutoMapper לא ינסה למפות Role
+
+            CreateMap<Team, TeamDTO>().ReverseMap();
+            CreateMap<Team, TeamPostDTO>().ReverseMap();
             CreateMap<User, UserCreateDTO>().ReverseMap();
-            CreateMap<UserRole, UserRoleDTO>().ReverseMap();
             CreateMap<Role, RoleDTO>().ReverseMap();
             CreateMap<RegisterDto, User>().ReverseMap();
-            CreateMap<UserRoleCreateDTO, UserRole>().ReverseMap();
-            CreateMap<UserRolePutDTO, UserRole>().ReverseMap();
           
         }
     }

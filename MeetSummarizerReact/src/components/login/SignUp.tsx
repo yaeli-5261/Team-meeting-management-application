@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 import { Button, TextField, Box } from "@mui/material";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { loginUser } from "../UserRedux/authSlice";
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
+import { signUp } from "../UserRedux/authSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../UserRedux/reduxStore";
 
-const API_URL = "https://your-api.com/api/auth"; // עדכן את ה-API שלך
+const API_URL = "https://localhost:7214/api/Auth/register"; // עדכן את ה-API שלך
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
     const [error, setError] = useState("");
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${API_URL}/signup`, { name, email, password });
+            const response = await axios.post(`${API_URL}`, { userName: name, email: email, password: password, role: "Admin" });
             if (response.data.token) {
-                dispatch(loginUser({ email, password }));
-                navigate("/dashboard");
+                dispatch(signUp({ userName: name, email: email, password: password, role: "Admin" }));
+                console.log(response.data);
+                
+                navigate("/FileUploader");
             }
         } catch (error: any) {
             setError(error.response?.data?.message || "Signup failed");
@@ -39,6 +40,7 @@ const SignUp = () => {
                 Sign Up
             </Button>
             {error && <p style={{ color: "red" }}>{error}</p>}
+            
         </Box>
     );
 };

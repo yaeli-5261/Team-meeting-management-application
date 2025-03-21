@@ -7,6 +7,7 @@ using MeetSummarizer.Core.DTOs;
 using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace MeetSummarizer.API.Controllers
 {
@@ -23,12 +24,13 @@ namespace MeetSummarizer.API.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("Admin")]
-        [Authorize(Policy = "Admin")]
+        //[HttpGet("Admin")]
+        //[Authorize(Policy = "Admin")]
+        [HttpGet]
         public async Task<ActionResult<List<UserDTO>>> GetAll()
         {
             var users = await _userService.GetAllUsers();
-            return Ok(users);
+            return Ok(_mapper.Map<List<UserDTO >>(users));
         }
 
         [HttpGet("{id}")]
@@ -42,7 +44,7 @@ namespace MeetSummarizer.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] UserCreateDTO userDto)
+        public async Task<ActionResult> Post([FromBody] RegisterDto userDto)
         {
             var createdUser = _mapper.Map<User>(userDto);
             User u = await _userService.AddUser(createdUser);
@@ -50,7 +52,7 @@ namespace MeetSummarizer.API.Controllers
         }
    
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] UserDTO userDto)
+        public async Task<ActionResult> Put(int id, [FromBody] UserCreateDTO userDto)
         {
 
             var current = await _userService.GetUserById(id);
@@ -59,7 +61,7 @@ namespace MeetSummarizer.API.Controllers
 
             User user = _mapper.Map<User>(userDto);
             await _userService.UpdateUser(id, user);
-            return Ok(new { message = "Meeting updated" });
+            return Ok(new { message = "User updated" });
         }
 
         [HttpDelete("{id}")]
@@ -72,5 +74,6 @@ namespace MeetSummarizer.API.Controllers
             await _userService.DeleteUser(id);
             return Ok(new { message = "User deleted" });
         }
+
     }
 }

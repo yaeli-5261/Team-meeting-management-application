@@ -15,9 +15,11 @@ namespace MeetSummarizer.Core.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
-        public int TranscriptId { get; set; }
-        public int TeamId { get; set; }//שם צוות
-      
+        public int TeamId { get; set; }//קוד צוות
+        public string LinkTranscriptFile { get; set; }
+        public string LinkOrinignFile { get; set; }
+
+
     }
 
 }
